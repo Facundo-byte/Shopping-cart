@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router";
 import { Header, Footer } from "./FooterHeader.jsx";
 import { MoviesContext } from "../context/MoviesContext.jsx";
 
@@ -35,9 +36,9 @@ export default function Cart() {
         </ul>
         <div className="flex justify-around">
           <h2>Total: $ {15.99 * cartitems}</h2>
-          <button className="cursor-pointer bg-amber-950">
+          <Link to="/checkout" className="cursor-pointer bg-amber-950">
             Go to checkout
-          </button>
+          </Link>
         </div>
       </main>
       <Footer />
