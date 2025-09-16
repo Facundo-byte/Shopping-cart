@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+const apiKey = import.meta.env.API_KEY;
+
 export const useFetchMovies = () => {
   const [movies, setMovies] = useState(null);
   const [error, setError] = useState(null);
@@ -9,8 +11,7 @@ export const useFetchMovies = () => {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiODQ1YzI1MDVjMDllN2ViMWY2Mzk3MjE3NThhNWE4OCIsIm5iZiI6MTc1NzcyNTg4My45MzgsInN1YiI6IjY4YzRjNGJiYjM2ZDI1ZDI3ZjU1MWE0MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.8c0is-WswSTnyjn_Ewef7Vj2pBpsH3If3-SW0IjvE7I",
+      Authorization: `Bearer ${apiKey}`,
     },
   };
 
