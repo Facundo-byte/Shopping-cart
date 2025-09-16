@@ -1,13 +1,16 @@
 import { Link } from "react-router";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import cart from "../assets/Cart.png";
 import sun from "../assets/Sun.png";
 import wlinkedin from "../assets/Linkedinwhite.png";
 import blinkedin from "../assets/Linkedin.png";
 import wgithub from "../assets/Githubwhite.png";
 import bgithub from "../assets/Github.png";
+import { MoviesContext } from "../context/MoviesContext.jsx";
 
 export function Header() {
+  const { cartitems } = useContext(MoviesContext);
+
   return (
     <header className="flex h-40 flex-wrap items-center justify-around bg-stone-900">
       <Link to="/" className="text-lime-600">
@@ -22,7 +25,7 @@ export function Header() {
         </Link>
         <Link to="/cart" className="flex flex-row items-center gap-5">
           <img src={cart} alt="no hay img" />
-          <p className="text-amber-50">1</p>
+          <p className="text-amber-50">{cartitems}</p>
         </Link>
         <Link to="/">
           <img src={sun} alt="no hay img" />
