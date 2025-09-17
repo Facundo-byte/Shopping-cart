@@ -1,26 +1,15 @@
 import { useState, useEffect } from "react";
 
-const apiKey =
-  "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNGEwMzQ2YThjMTk4N2E0NGUyM2FjN2Y3ZGFjZWJlYSIsIm5iZiI6MTc1NzcyNTg4My45MzgsInN1YiI6IjY4YzRjNGJiYjM2ZDI1ZDI3ZjU1MWE0MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ECeMQLpku221HHLRCUwv7hZPKLsXWwbnaPw7XifjNPw";
-console.log(apiKey);
+const apikey = "c4a0346a8c1987a44e23ac7f7dacebea";
 
 export const useFetchMovies = () => {
   const [movies, setMovies] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization: `Bearer ${apiKey}`,
-    },
-  };
-
   useEffect(() => {
     fetch(
-      "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc",
-      options,
+      `https://api.themoviedb.org/3/discover/movie?api_key=${apikey}&include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc`,
     )
       .then((res) => {
         if (res.status > 400) {
