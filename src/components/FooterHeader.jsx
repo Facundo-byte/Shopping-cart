@@ -46,7 +46,7 @@ export const Header = memo(function Header() {
 
         <div
           className={
-            "items-center gap-8 md:flex md:flex-row" +
+            "items-center gap-8 md:flex md:flex-row " +
             (show ? "flex flex-col" : "hidden")
           }
         >

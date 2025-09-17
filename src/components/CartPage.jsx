@@ -24,7 +24,7 @@ export default function Cart() {
           <h1 className="text-center text-3xl font-bold text-lime-600 md:pl-25 md:text-left md:text-5xl">
             Your shopping cart.
           </h1>
-          <ul className="flex flex-col items-center justify-center gap-5">
+          <ul className="flex flex-col justify-center gap-5 md:items-center">
             {movies?.results?.map((movie, index) => {
               if (items[index].cart > 0 && items[index].buyed) {
                 return (
@@ -107,7 +107,7 @@ export const Movie = memo(function Movie({
           <p className="hidden max-w-100 md:block">{desc}</p>
           <p className="text-xl font-medium md:text-base">$14,99</p>
 
-          <div className="flex flex-row items-center justify-center gap-6 md:hidden">
+          <div className="flex flex-row items-center justify-start gap-6 md:hidden">
             <button
               className="cursor-pointer text-5xl text-stone-800 dark:text-stone-300"
               onClick={(e) => handleDeleteItem(e)}
@@ -118,7 +118,7 @@ export const Movie = memo(function Movie({
               {items[position].cart}
             </p>
             <button
-              className="cursor-pointer text-9xl text-stone-800 dark:text-stone-300"
+              className="cursor-pointer text-5xl text-stone-800 dark:text-stone-300"
               onClick={(e) => handleAddItem(e)}
             >
               +
