@@ -2,29 +2,40 @@ import { Header, Footer } from "./FooterHeader.jsx";
 import { useContext } from "react";
 import { Link } from "react-router";
 import wstar from "../assets/Starwhite.png";
+import bstar from "../assets/bstar.png";
 import { MoviesContext } from "../context/MoviesContext.jsx";
 
 const posterUrl = "https://image.tmdb.org/t/p/original";
 
 export default function ShopItems() {
-  const { movies, error, loading, items, setItems, cartitems, setCartItems } =
-    useContext(MoviesContext);
+  const {
+    movies,
+    error,
+    loading,
+    items,
+    setItems,
+    cartitems,
+    setCartItems,
+    darkmode,
+  } = useContext(MoviesContext);
 
   if (error) {
     return <p>hubo un error</p>;
   }
 
   return (
-    <div>
+    <div className={darkmode ? "dark" : ""}>
       <Header />
       {loading ? (
         <main>
           <p>Cargando...</p>
         </main>
       ) : (
-        <main>
-          <h1>Catalogue of movies.</h1>
-          <ul className="grid grid-cols-4">
+        <main className="flex flex-col gap-10 bg-stone-300 pr-10 pl-10 dark:bg-stone-900">
+          <h1 className="text-4xl font-bold text-lime-600 md:pl-25 md:text-5xl">
+            Movie catalogue.
+          </h1>
+          <ul className="flex flex-col gap-15 bg-stone-300 md:m-auto md:grid md:grid-cols-4 dark:bg-stone-900">
             {movies.results.map((movie, index) => (
               <li key={index}>
                 <ItemCard
@@ -36,6 +47,7 @@ export default function ShopItems() {
                   position={index}
                   cartitems={cartitems}
                   setCartItems={setCartItems}
+                  darkmode={darkmode}
                 />
               </li>
             ))}
@@ -57,6 +69,7 @@ export function ItemCard({
   position,
   cartitems,
   setCartItems,
+  darkmode,
 }) {
   function handleAddItems(e) {
     e.preventDefault();
@@ -86,37 +99,50 @@ export function ItemCard({
   }
 
   return (
-    <div className="flex h-80 w-40 flex-col gap-3 border-1 bg-stone-700">
+    <div className="flex min-h-80 flex-col gap-3 md:w-45 dark:text-amber-50">
       <Link to="/" className="flex justify-center">
-        <img src={posterUrl + poster} alt="no hay img" className="h-40" />
+        <img
+          src={posterUrl + poster}
+          alt="no hay img"
+          className="h-70 rounded-2xl"
+        />
       </Link>
 
-      <div className="flex flex-row gap-5">
-        <h2>{name}</h2>
+      <div className="flex flex-row justify-between gap-5">
+        <h2 className="font-semibold">{name}</h2>
         <div className="flex">
           <p>{Math.round(points)}/10</p>
-          <img src={wstar} alt="no hay img" className="size-6" />
+          <img
+            src={darkmode ? wstar : bstar}
+            alt="no hay img"
+            className="size-5"
+          />
         </div>
       </div>
       <p>$14,99</p>
-      <div className="flex items-center gap-5">
+      <div className="flex flex-col items-center gap-6 md:flex-row">
         <button
-          className="cursor-pointer bg-amber-400 text-xs"
+          className="text-s flex w-70 cursor-pointer items-center justify-center rounded-md bg-indigo-500 p-4 text-stone-100 md:h-9 md:text-xs"
           type="submit"
           onClick={(e) => handleAddtoCart(e)}
         >
           Add to cart
         </button>
-        <button
-          className="cursor-pointer"
-          onClick={(e) => handleDeleteItems(e)}
-        >
-          -
-        </button>
-        <p>{items[position].shop}</p>
-        <button className="cursor-pointer" onClick={(e) => handleAddItems(e)}>
-          +
-        </button>
+        <div className="flex items-center justify-center gap-3">
+          <button
+            className="cursor-pointer text-5xl md:text-base"
+            onClick={(e) => handleDeleteItems(e)}
+          >
+            -
+          </button>
+          <p className="text-xl md:text-base">{items[position].shop}</p>
+          <button
+            className="cursor-pointer text-5xl md:text-base"
+            onClick={(e) => handleAddItems(e)}
+          >
+            +
+          </button>
+        </div>
       </div>
     </div>
   );
