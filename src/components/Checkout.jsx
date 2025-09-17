@@ -45,7 +45,7 @@ export default function Checkout() {
         )}
         <Link
           to="/"
-          className="flex h-30 w-60 items-center justify-center rounded-xl bg-indigo-600 text-4xl font-bold text-stone-300 md:h-30 md:w-xl"
+          className="inline-flex h-30 w-60 cursor-pointer items-center justify-center rounded-xl bg-indigo-600 px-4 py-2 text-4xl font-bold text-stone-100 transition-all delay-75 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 active:scale-95 md:h-30 md:w-xl dark:bg-indigo-600"
         >
           Go Home
         </Link>

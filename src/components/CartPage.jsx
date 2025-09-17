@@ -1,9 +1,13 @@
-import { useContext } from "react";
+import { useContext, memo } from "react";
 import { Link } from "react-router";
 import { Header, Footer } from "./FooterHeader.jsx";
 import { MoviesContext } from "../context/MoviesContext.jsx";
 import { DarkmodeContext } from "../context/DarkmodeContext.jsx";
 import { ItemsContext } from "../context/ItemsContext.jsx";
+import wadd from "../assets/wadd.png";
+import badd from "../assets/add.png";
+import wminus from "../assets/wminus.png";
+import bminus from "../assets/minus.png";
 
 const posterUrl = "https://image.tmdb.org/t/p/original";
 
@@ -14,13 +18,13 @@ export default function Cart() {
 
   return (
     <div className={darkmode ? "dark" : ""}>
-      <div className="flex min-h-screen flex-col">
+      <div className="transition-delay-100 flex min-h-screen flex-col gap-6 bg-stone-100 transition-all dark:bg-stone-900">
         <Header />
-        <main className="flex flex-1 flex-col gap-10 bg-stone-300 dark:bg-stone-900">
+        <main className="transition-delay-100 flex flex-1 flex-col gap-10 bg-stone-100 transition-all dark:bg-stone-900">
           <h1 className="text-center text-3xl font-bold text-lime-600 md:pl-25 md:text-left md:text-5xl">
             Your shopping cart.
           </h1>
-          <ul className="flex flex-col gap-5">
+          <ul className="flex flex-col items-center justify-center gap-5">
             {movies?.results?.map((movie, index) => {
               if (items[index].cart > 0 && items[index].buyed) {
                 return (
@@ -34,6 +38,7 @@ export default function Cart() {
                       setItems={setItems}
                       cartitems={cartitems}
                       setcartitems={setCartItems}
+                      darkmode={darkmode}
                     />
                   </li>
                 );
@@ -42,11 +47,11 @@ export default function Cart() {
           </ul>
           <div className="flex flex-col items-center justify-around gap-5 md:flex-row">
             <h2 className="text-4xl font-bold text-stone-800 md:pl-25 dark:text-stone-300">
-              Total: $ {15.99 * cartitems}
+              Total: $ {Math.round(15.99 * cartitems * 100) / 100}
             </h2>
             <Link
               to="/checkout"
-              className="flex h-15 w-40 cursor-pointer items-center justify-center rounded-md bg-indigo-600 text-stone-200"
+              className="inline-flex h-15 w-40 cursor-pointer items-center justify-center rounded-md bg-indigo-700 px-4 py-2 text-stone-100 transition-all delay-75 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 active:scale-95 dark:bg-indigo-600"
             >
               Go to checkout
             </Link>
@@ -58,7 +63,7 @@ export default function Cart() {
   );
 }
 
-export function Movie({
+export const Movie = memo(function Movie({
   title,
   desc,
   poster,
@@ -67,6 +72,7 @@ export function Movie({
   setItems,
   cartitems,
   setcartitems,
+  darkmode,
 }) {
   function handleAddItem(e) {
     e.preventDefault();
@@ -89,7 +95,7 @@ export function Movie({
   }
 
   return (
-    <div className="flex flex-col md:flex-row md:justify-around">
+    <div className="flex flex-col rounded-xl p-5 transition-all delay-50 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110 hover:shadow-xl md:min-w-300 md:flex-row md:justify-between dark:shadow-stone-950/80">
       <div className="flex gap-10">
         <img
           src={posterUrl + poster}
@@ -112,7 +118,7 @@ export function Movie({
               {items[position].cart}
             </p>
             <button
-              className="cursor-pointer text-5xl text-stone-800 dark:text-stone-300"
+              className="cursor-pointer text-9xl text-stone-800 dark:text-stone-300"
               onClick={(e) => handleAddItem(e)}
             >
               +
@@ -123,21 +129,29 @@ export function Movie({
 
       <div className="hidden md:flex md:flex-row md:items-center md:gap-3">
         <button
-          className="cursor-pointer text-2xl text-stone-800 dark:text-stone-300"
+          className="cursor-pointer text-stone-800 transition-all delay-50 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110 active:scale-95 dark:text-stone-300"
           onClick={(e) => handleDeleteItem(e)}
         >
-          -
+          <img
+            src={darkmode ? wminus : bminus}
+            alt="no hay imagen"
+            className="size-10"
+          />
         </button>
         <p className="text-stone-800 dark:text-stone-300">
           {items[position].cart}
         </p>
         <button
-          className="cursor-pointer text-2xl text-stone-800 dark:text-stone-300"
+          className="cursor-pointer text-stone-800 transition-all delay-50 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110 active:scale-95 dark:text-stone-300"
           onClick={(e) => handleAddItem(e)}
         >
-          +
+          <img
+            src={darkmode ? wadd : badd}
+            alt="no hay imagen"
+            className="size-10"
+          />
         </button>
       </div>
     </div>
   );
-}
+});
