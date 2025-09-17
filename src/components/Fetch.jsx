@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 const apiKey = import.meta.env.VITE_API_KEY;
+console.log(apiKey);
 
 export const useFetchMovies = () => {
   const [movies, setMovies] = useState(null);
