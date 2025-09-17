@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
-const apiKey = import.meta.env.VITE_API_KEY;
+const apiKey =
+  "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNGEwMzQ2YThjMTk4N2E0NGUyM2FjN2Y3ZGFjZWJlYSIsIm5iZiI6MTc1NzcyNTg4My45MzgsInN1YiI6IjY4YzRjNGJiYjM2ZDI1ZDI3ZjU1MWE0MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ECeMQLpku221HHLRCUwv7hZPKLsXWwbnaPw7XifjNPw";
 console.log(apiKey);
 
 export const useFetchMovies = () => {

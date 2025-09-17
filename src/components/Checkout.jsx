@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
-import { MoviesContext } from "../context/MoviesContext.jsx";
+import { DarkmodeContext } from "../context/DarkmodeContext.jsx";
+import { ItemsContext } from "../context/ItemsContext.jsx";
 import { Link } from "react-router";
 
 export default function Checkout() {
-  const { setItems, setCartItems, cartitems, darkmode } =
-    useContext(MoviesContext);
-
+  const { setItems, setCartItems, cartitems } = useContext(ItemsContext);
+  const { darkmode } = useContext(DarkmodeContext);
   const [flag, setFlag] = useState(false);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ export default function Checkout() {
       setFlag(true);
       setCartItems(0);
     }
-    setItems(citems);
+    setItems(citems); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

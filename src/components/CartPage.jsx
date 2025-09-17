@@ -2,12 +2,15 @@ import { useContext } from "react";
 import { Link } from "react-router";
 import { Header, Footer } from "./FooterHeader.jsx";
 import { MoviesContext } from "../context/MoviesContext.jsx";
+import { DarkmodeContext } from "../context/DarkmodeContext.jsx";
+import { ItemsContext } from "../context/ItemsContext.jsx";
 
 const posterUrl = "https://image.tmdb.org/t/p/original";
 
 export default function Cart() {
-  const { movies, items, setItems, cartitems, setCartItems, darkmode } =
-    useContext(MoviesContext);
+  const { movies } = useContext(MoviesContext);
+  const { items, setItems, cartitems, setCartItems } = useContext(ItemsContext);
+  const { darkmode } = useContext(DarkmodeContext);
 
   return (
     <div className={darkmode ? "dark" : ""}>

@@ -2,10 +2,10 @@ import { useContext } from "react";
 import { Header, Footer } from "./FooterHeader.jsx";
 import { Link } from "react-router";
 import posters from "../assets/Posters.png";
-import { MoviesContext } from "../context/MoviesContext.jsx";
+import { DarkmodeContext } from "../context/DarkmodeContext.jsx";
 
 export default function App() {
-  const { darkmode } = useContext(MoviesContext);
+  const { darkmode } = useContext(DarkmodeContext);
 
   return (
     <div className={darkmode ? "dark" : ""}>

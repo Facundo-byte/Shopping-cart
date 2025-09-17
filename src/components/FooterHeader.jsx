@@ -11,10 +11,12 @@ import bgithub from "../assets/Github.png";
 import cinemovie from "../assets/cinemovie.png";
 import menu from "../assets/Menu.png";
 import bmenu from "../assets/bmenu.png";
-import { MoviesContext } from "../context/MoviesContext.jsx";
+import { ItemsContext } from "../context/ItemsContext.jsx";
+import { DarkmodeContext } from "../context/DarkmodeContext.jsx";
 
 export function Header() {
-  const { cartitems, darkmode, setDarkmode } = useContext(MoviesContext);
+  const { darkmode, setDarkmode } = useContext(DarkmodeContext);
+  const { cartitems } = useContext(ItemsContext);
 
   function cambiarTema(e) {
     e.preventDefault();
@@ -51,41 +53,17 @@ export function Header() {
         {
           /////////////mobile}
         }
-        <div className="flex flex-col md:hidden">
-          <button>
-            <img src={darkmode ? menu : bmenu} alt="" />
-          </button>
-          <div>
-            <Link to="/" className="font-semibold text-lime-600">
-              Home
-            </Link>
-            <Link to="/shop" className="font-semibold text-lime-600">
-              Shop
-            </Link>
-            <Link
-              to="/cart"
-              className="flex size-8 flex-row items-center gap-2"
-            >
-              <img src={darkmode ? cart : bcart} alt="no hay img" />
-              {cartitems ? (
-                <p className="text-stone-700 dark:text-amber-50">{cartitems}</p>
-              ) : null}
-            </Link>
-            <button
-              className="size-8 cursor-pointer"
-              onClick={(e) => cambiarTema(e)}
-            >
-              <img src={darkmode ? sun : moon} alt="no hay img" />
-            </button>
-          </div>
-        </div>
+
+        <button className="md:hidden">
+          <img src={darkmode ? menu : bmenu} alt="" />
+        </button>
       </header>
     </div>
   );
 }
 
 export function Footer() {
-  const { darkmode } = useContext(MoviesContext);
+  const { darkmode } = useContext(DarkmodeContext);
 
   return (
     <footer className="border-t- flex h-52 flex-col items-center justify-center gap-3 border-amber-50 bg-stone-300 dark:bg-stone-900">
