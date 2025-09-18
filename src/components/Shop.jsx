@@ -94,7 +94,7 @@ export const ItemCard = memo(function ItemCard({
   }
 
   return (
-    <div className="flex min-h-80 flex-col gap-3 rounded-xl p-5 shadow-xl transition-all delay-30 duration-200 ease-in-out hover:-translate-y-1 hover:scale-120 hover:shadow-xl md:w-60 md:shadow-none dark:text-amber-50 dark:shadow-stone-950/50 dark:hover:shadow-stone-950/50">
+    <div className="flex min-h-80 flex-col gap-3 rounded-2xl p-5 shadow-xl transition-all delay-30 duration-200 ease-in-out hover:-translate-y-1 hover:scale-120 hover:shadow-xl md:w-60 md:shadow-none dark:text-amber-50 dark:shadow-stone-950/50 dark:hover:shadow-stone-950/50">
       <button
         type="submit"
         onClick={(e) => handleAddtoCart(e)}
