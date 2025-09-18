@@ -86,15 +86,15 @@ export const ItemCard = memo(function ItemCard({
     e.preventDefault();
     let citems = [...items];
     citems[position].cart += citems[position].shop;
-    citems[position].shop = 1;
     citems[position].buyed = true;
     let ccart = cartitems;
     ccart += citems[position].shop;
+    citems[position].shop = 1;
     setCartItems(ccart);
   }
 
   return (
-    <div className="flex min-h-80 flex-col gap-3 rounded-xl transition-all delay-30 duration-200 ease-in-out hover:-translate-y-1 hover:scale-120 hover:shadow-xl active:scale-95 md:w-60 md:p-5 dark:text-amber-50 dark:hover:shadow-stone-950/50">
+    <div className="flex min-h-80 flex-col gap-3 rounded-xl p-5 shadow-xl transition-all delay-30 duration-200 ease-in-out hover:-translate-y-1 hover:scale-120 hover:shadow-xl md:w-60 md:shadow-none dark:text-amber-50 dark:shadow-stone-950/50 dark:hover:shadow-stone-950/50">
       <button
         type="submit"
         onClick={(e) => handleAddtoCart(e)}
@@ -119,24 +119,25 @@ export const ItemCard = memo(function ItemCard({
         </div>
       </div>
       <p>$14,99</p>
-      <div className="flex flex-col items-center gap-6 md:flex-row">
+      <div className="flex min-w-full flex-col items-center gap-6 md:flex-row md:justify-center md:gap-2">
         <button
-          className="text-s flex w-70 cursor-pointer items-center justify-center rounded-md bg-indigo-500 p-4 text-stone-100 transition-all delay-50 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110 active:scale-95 md:h-9 md:text-xs"
+          className="text-s flex w-70 cursor-pointer items-center justify-center rounded-md bg-indigo-500 p-4 text-stone-100 transition-all delay-50 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110 active:scale-95 md:h-9 md:border-none md:text-xs"
           type="submit"
           onClick={(e) => handleAddtoCart(e)}
         >
           Add to cart
         </button>
-        <div className="flex items-center justify-center gap-3">
+
+        <div className="flex items-center justify-center gap-9 rounded-xl border-1 border-stone-600 md:gap-1 md:border-none md:bg-transparent dark:border-stone-400 md:dark:bg-transparent">
           <button
-            className="hover:bg-stone cursor-pointer text-5xl transition-all delay-50 duration-200 ease-in-out hover:-translate-y-0.5 hover:scale-110 active:scale-95 md:text-base"
+            className="hover:bg-stone min-w-16 cursor-pointer border-r-1 border-stone-600 p-5 text-5xl transition-all delay-50 duration-200 ease-in-out hover:-translate-y-0.5 hover:scale-110 active:scale-95 md:min-w-0 md:border-none md:p-2 md:text-base dark:border-stone-400"
             onClick={(e) => handleDeleteItems(e)}
           >
             -
           </button>
           <p className="text-xl md:text-base">{items[position].shop}</p>
           <button
-            className="cursor-pointer text-5xl transition-all delay-50 duration-200 ease-in-out hover:-translate-y-0.5 hover:scale-110 active:scale-95 md:text-base"
+            className="min-w-16 cursor-pointer border-l-1 p-5 text-5xl transition-all delay-50 duration-200 ease-in-out hover:-translate-y-0.5 hover:scale-110 active:scale-95 md:min-w-0 md:border-none md:p-2 md:text-base"
             onClick={(e) => handleAddItems(e)}
           >
             +
