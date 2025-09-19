@@ -125,7 +125,7 @@ export function Footer() {
       </h2>
       <div className="flex gap-8">
         <a
-          href="https://github.com/Facundo-byte"
+          href="https://www.linkedin.com/in/facundo-david-iascas-1a7427280/"
           className="transition-all delay-50 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110"
         >
           <img
@@ -136,7 +136,7 @@ export function Footer() {
         </a>
 
         <a
-          href="https://www.linkedin.com/in/facundo-david-iascas-1a7427280/"
+          href="https://github.com/Facundo-byte"
           className="transition-all delay-50 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110"
         >
           <img
