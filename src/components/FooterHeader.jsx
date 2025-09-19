@@ -37,7 +37,7 @@ export const Header = memo(function Header() {
         <div className="flex h-40 min-w-screen flex-wrap items-center justify-around md:min-w-100">
           <Link
             to="/"
-            className="flex size-25 items-center justify-center rounded-xl font-semibold text-lime-600 transition-all delay-50 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-stone-200 dark:hover:bg-stone-700"
+            className="flex size-25 items-center justify-center rounded-xl font-semibold text-lime-600 transition-all delay-50 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110"
           >
             <img src={cinemovie} alt="" />
           </Link>
@@ -47,7 +47,7 @@ export const Header = memo(function Header() {
         </div>
 
         <motion.div
-          className="flex flex-col items-center justify-center gap-8 md:flex-row"
+          className="flex flex-col items-center justify-center gap-8 md:h-30 md:w-100 md:flex-row"
           initial={false}
           animate={
             window.innerWidth < 768
