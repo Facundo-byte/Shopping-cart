@@ -14,6 +14,7 @@ export default function ShopItems() {
   const { movies, error, loading } = useContext(MoviesContext);
   const { items, setItems, cartitems, setCartItems } = useContext(ItemsContext);
   const { darkmode } = useContext(DarkmodeContext);
+  const active = 1;
 
   if (error) {
     return <p>hubo un error</p>;
@@ -21,7 +22,7 @@ export default function ShopItems() {
 
   return (
     <div className={darkmode ? "dark" : ""}>
-      <Header />
+      <Header active={active} />
       {loading ? (
         <main>
           <p>Cargando...</p>

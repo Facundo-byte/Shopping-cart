@@ -16,7 +16,7 @@ import { DarkmodeContext } from "../context/DarkmodeContext.jsx";
 
 import { motion } from "motion/react";
 
-export const Header = memo(function Header() {
+export const Header = memo(function Header({ active }) {
   const { darkmode, setDarkmode } = useContext(DarkmodeContext);
   const { cartitems } = useContext(ItemsContext);
 
@@ -61,19 +61,34 @@ export const Header = memo(function Header() {
         >
           <Link
             to="/"
-            className="flex h-10 w-15 items-center justify-center rounded-xl font-semibold text-lime-600 transition-all delay-50 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-stone-200 dark:hover:bg-stone-700"
+            className={
+              "flex h-10 w-15 items-center justify-center rounded-xl font-semibold text-lime-600 transition-all delay-50 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-stone-200 dark:hover:bg-stone-700 " +
+              (active == 2
+                ? "-translate-y-1 scale-110 bg-stone-200 hover:scale-110 dark:bg-stone-700"
+                : null)
+            }
           >
             Home
           </Link>
           <Link
             to="/shop"
-            className="flex h-10 w-15 items-center justify-center rounded-xl font-semibold text-lime-600 transition-all delay-50 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-stone-200 dark:hover:bg-stone-700"
+            className={
+              "flex h-10 w-15 items-center justify-center rounded-xl font-semibold text-lime-600 transition-all delay-50 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-stone-200 dark:hover:bg-stone-700 " +
+              (active == 1
+                ? "-translate-y-1 scale-110 bg-stone-200 hover:scale-110 dark:bg-stone-700"
+                : null)
+            }
           >
             Shop
           </Link>
           <Link
             to="/cart"
-            className="flex h-13 w-14 flex-row items-center justify-center gap-2 rounded-xl transition-all delay-50 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-stone-200 dark:hover:bg-stone-700"
+            className={
+              "flex h-13 w-14 flex-row items-center justify-center gap-2 rounded-xl transition-all delay-50 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-stone-200 dark:hover:bg-stone-700 " +
+              (active == 3
+                ? "-translate-y-1 scale-110 bg-stone-200 hover:scale-110 dark:bg-stone-700"
+                : null)
+            }
           >
             <img
               src={darkmode ? cart : bcart}

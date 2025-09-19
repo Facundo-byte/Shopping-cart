@@ -7,6 +7,7 @@ import { motion } from "motion/react";
 
 export default function App() {
   const { darkmode } = useContext(DarkmodeContext);
+  const active = 2;
 
   const containerVariants = {
     hidden: {},
@@ -21,7 +22,7 @@ export default function App() {
   return (
     <div className={darkmode ? "dark" : ""}>
       <div className="transition-delay-100 flex h-screen max-w-screen flex-col gap-6 bg-stone-100 transition-all dark:bg-stone-900">
-        <Header />
+        <Header active={active} />
         <motion.main
           transition={{
             duration: 1,

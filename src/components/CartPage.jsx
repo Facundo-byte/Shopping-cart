@@ -17,6 +17,7 @@ export default function Cart() {
   const { movies } = useContext(MoviesContext);
   const { items, setItems, cartitems, setCartItems } = useContext(ItemsContext);
   const { darkmode } = useContext(DarkmodeContext);
+  const active = 3;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -31,7 +32,7 @@ export default function Cart() {
   return (
     <div className={darkmode ? "dark" : ""}>
       <div className="transition-delay-100 flex min-h-screen flex-col gap-6 bg-stone-100 transition-all dark:bg-stone-900">
-        <Header />
+        <Header active={active} />
         <motion.main
           className="transition-delay-100 flex flex-1 flex-col gap-10 bg-stone-100 transition-colors dark:bg-stone-900"
           initial={{ y: -50 }}
