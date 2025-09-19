@@ -6,7 +6,7 @@ import bstar from "../assets/bstar.png";
 import { MoviesContext } from "../context/MoviesContext.jsx";
 import { DarkmodeContext } from "../context/DarkmodeContext.jsx";
 import { ItemsContext } from "../context/ItemsContext.jsx";
-import { motion } from "motion/react";
+import { motion, useAnimationControls } from "motion/react";
 
 const posterUrl = "https://image.tmdb.org/t/p/original";
 
@@ -92,6 +92,8 @@ export const ItemCard = memo(function ItemCard({
   setCartItems,
   darkmode,
 }) {
+  const animcontrol = useAnimationControls();
+
   function handleAddItems(e) {
     e.preventDefault();
     let citems = [...items];
@@ -108,6 +110,12 @@ export const ItemCard = memo(function ItemCard({
     setItems(citems);
   }
 
+  function handleImageClick(e) {
+    e.preventDefault();
+    animcontrol.start("push");
+    handleAddtoCart(e);
+  }
+
   function handleAddtoCart(e) {
     e.preventDefault();
     let citems = [...items];
@@ -120,10 +128,28 @@ export const ItemCard = memo(function ItemCard({
   }
 
   return (
-    <div className="flex min-h-80 flex-col gap-3 rounded-2xl p-5 shadow-xl transition-all delay-30 duration-200 ease-in-out hover:-translate-y-1 hover:scale-120 hover:shadow-xl md:w-60 md:shadow-none dark:text-amber-50 dark:shadow-stone-950/50 dark:hover:shadow-stone-950/50">
+    <motion.div
+      className="flex min-h-80 flex-col gap-3 rounded-2xl p-5 shadow-xl md:w-60 md:shadow-none dark:text-amber-50 dark:shadow-stone-950/50 dark:hover:shadow-stone-950/50"
+      variants={{
+        push: {
+          scale: [1.1, 0.8, 1.2],
+          rotate: ["1deg", "3deg", "0deg"],
+          transition: { duration: 0.2 },
+        },
+      }}
+      whileHover={{
+        boxShadow: darkmode
+          ? "0 10px 15px -3px rgba(12, 10, 9, 0.5), 0 4px 6px -2px rgba(12, 10, 9, 0.5)"
+          : "0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05)",
+        y: -4,
+        scale: 1.2,
+      }}
+      transition={{ duration: 0.2 }}
+      animate={animcontrol}
+    >
       <button
         type="submit"
-        onClick={(e) => handleAddtoCart(e)}
+        onClick={(e) => handleImageClick(e)}
         className="flex cursor-pointer justify-center"
       >
         <img
@@ -170,6 +196,6 @@ export const ItemCard = memo(function ItemCard({
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 });
