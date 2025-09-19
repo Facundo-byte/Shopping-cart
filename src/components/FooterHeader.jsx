@@ -14,6 +14,8 @@ import bmenu from "../assets/bmenu.png";
 import { ItemsContext } from "../context/ItemsContext.jsx";
 import { DarkmodeContext } from "../context/DarkmodeContext.jsx";
 
+import { motion } from "motion/react";
+
 export const Header = memo(function Header() {
   const { darkmode, setDarkmode } = useContext(DarkmodeContext);
   const { cartitems } = useContext(ItemsContext);
@@ -44,11 +46,18 @@ export const Header = memo(function Header() {
           </button>
         </div>
 
-        <div
-          className={
-            "items-center gap-8 md:flex md:flex-row " +
-            (show ? "flex flex-col" : "hidden")
+        <motion.div
+          className="flex flex-col items-center justify-center gap-8 md:flex-row"
+          initial={false}
+          animate={
+            window.innerWidth < 768
+              ? show
+                ? { height: "auto" }
+                : { height: 0 }
+              : {}
           }
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          style={{ overflow: "hidden" }}
         >
           <Link
             to="/"
@@ -85,12 +94,23 @@ export const Header = memo(function Header() {
               className="size-8"
             />
           </button>
-        </div>
+        </motion.div>
       </header>
     </div>
   );
 });
 
+/*
+<motion.div
+          className={
+            "items-center gap-8 md:flex md:flex-row " +
+            (show ? "flex flex-col" : "hidden")
+          }
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          transition={{ duration: 1 }}
+        >
+*/
 export function Footer() {
   const { darkmode } = useContext(DarkmodeContext);
 

@@ -9,6 +9,8 @@ import badd from "../assets/add.png";
 import wminus from "../assets/wminus.png";
 import bminus from "../assets/minus.png";
 
+import { motion } from "motion/react";
+
 const posterUrl = "https://image.tmdb.org/t/p/original";
 
 export default function Cart() {
@@ -16,19 +18,39 @@ export default function Cart() {
   const { items, setItems, cartitems, setCartItems } = useContext(ItemsContext);
   const { darkmode } = useContext(DarkmodeContext);
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: { opacity: 1, transition: { staggerChildren: 0.3 } },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: -50 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+  };
+
   return (
     <div className={darkmode ? "dark" : ""}>
       <div className="transition-delay-100 flex min-h-screen flex-col gap-6 bg-stone-100 transition-all dark:bg-stone-900">
         <Header />
-        <main className="transition-delay-100 flex flex-1 flex-col gap-10 bg-stone-100 transition-all dark:bg-stone-900">
+        <motion.main
+          className="transition-delay-100 flex flex-1 flex-col gap-10 bg-stone-100 transition-colors dark:bg-stone-900"
+          initial={{ y: -50 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 1 }}
+        >
           <h1 className="text-center text-3xl font-bold text-lime-600 md:pl-25 md:text-left md:text-5xl">
             Your shopping cart.
           </h1>
-          <ul className="flex flex-col justify-center gap-5 md:items-center">
+          <motion.ul
+            className="flex flex-col justify-center gap-5 md:items-center"
+            initial="hidden"
+            animate="show"
+            variants={containerVariants}
+          >
             {movies?.results?.map((movie, index) => {
               if (items[index].cart > 0 && items[index].buyed) {
                 return (
-                  <li key={index}>
+                  <motion.li key={index} variants={itemVariants}>
                     <Movie
                       title={movie.title}
                       desc={movie.overview}
@@ -40,12 +62,17 @@ export default function Cart() {
                       setcartitems={setCartItems}
                       darkmode={darkmode}
                     />
-                  </li>
+                  </motion.li>
                 );
               }
             })}
-          </ul>
-          <div className="flex flex-col items-center justify-around gap-5 md:flex-row">
+          </motion.ul>
+          <motion.div
+            className="flex flex-col items-center justify-around gap-5 md:flex-row"
+            initial={{ y: -50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, ease: "easeInOut" }}
+          >
             <h2 className="text-4xl font-bold text-stone-800 md:pl-25 dark:text-stone-300">
               Total: $ {Math.round(15.99 * cartitems * 100) / 100}
             </h2>
@@ -55,8 +82,8 @@ export default function Cart() {
             >
               Go to checkout
             </Link>
-          </div>
-        </main>
+          </motion.div>
+        </motion.main>
         <Footer />
       </div>
     </div>
