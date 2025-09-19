@@ -100,17 +100,6 @@ export const Header = memo(function Header() {
   );
 });
 
-/*
-<motion.div
-          className={
-            "items-center gap-8 md:flex md:flex-row " +
-            (show ? "flex flex-col" : "hidden")
-          }
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          transition={{ duration: 1 }}
-        >
-*/
 export function Footer() {
   const { darkmode } = useContext(DarkmodeContext);
 
