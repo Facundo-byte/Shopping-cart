@@ -75,7 +75,7 @@ export default function Cart() {
             transition={{ duration: 1, ease: "easeInOut" }}
           >
             <h2 className="text-4xl font-bold text-stone-800 md:pl-25 dark:text-stone-300">
-              Total: $ {Math.round(15.99 * cartitems * 100) / 100}
+              Total: $ {Math.round(14.99 * cartitems * 100) / 100}
             </h2>
             <Link
               to="/checkout"
