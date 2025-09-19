@@ -155,14 +155,14 @@ export const ItemCard = memo(function ItemCard({
 
         <div className="flex items-center justify-center gap-9 border-stone-600 md:gap-3 md:border-none md:bg-transparent dark:border-stone-400 md:dark:bg-transparent">
           <button
-            className="hover:bg-stone flex h-14 w-14 cursor-pointer items-center justify-center rounded-xl bg-indigo-500 p-5 text-5xl text-stone-100 transition-all delay-50 duration-200 ease-in-out hover:-translate-y-0.5 hover:scale-110 active:scale-95 md:h-auto md:w-0 md:border-none md:bg-transparent md:p-2 md:text-base dark:border-stone-400"
+            className="hover:bg-stone flex h-14 w-14 cursor-pointer items-center justify-center rounded-xl bg-indigo-500 p-5 text-5xl text-stone-100 transition-all delay-50 duration-200 ease-in-out hover:-translate-y-0.5 hover:scale-110 active:scale-95 md:h-auto md:w-0 md:border-none md:bg-transparent md:p-2 md:text-base md:text-stone-900 dark:border-stone-400 md:dark:text-stone-100"
             onClick={(e) => handleDeleteItems(e)}
           >
             -
           </button>
           <p className="text-xl md:text-base">{items[position].shop}</p>
           <button
-            className="flex h-14 w-14 cursor-pointer items-center justify-center rounded-xl bg-indigo-500 p-5 text-5xl text-stone-100 transition-all delay-50 duration-200 ease-in-out hover:-translate-y-0.5 hover:scale-110 active:scale-95 md:w-0 md:border-none md:bg-transparent md:p-2 md:text-base"
+            className="flex h-14 w-14 cursor-pointer items-center justify-center rounded-xl bg-indigo-500 p-5 text-5xl text-stone-100 transition-all delay-50 duration-200 ease-in-out hover:-translate-y-0.5 hover:scale-110 active:scale-95 md:w-0 md:border-none md:bg-transparent md:p-2 md:text-base md:text-stone-900 md:dark:text-stone-100"
             onClick={(e) => handleAddItems(e)}
           >
             +
