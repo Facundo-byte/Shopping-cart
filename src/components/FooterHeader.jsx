@@ -52,7 +52,7 @@ export const Header = memo(function Header({ active }) {
           animate={
             window.innerWidth < 768
               ? show
-                ? { height: "auto" }
+                ? { height: 300 }
                 : { height: 0 }
               : {}
           }

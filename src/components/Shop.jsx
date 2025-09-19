@@ -1,5 +1,5 @@
 import { Header, Footer } from "./FooterHeader.jsx";
-import { useContext, memo } from "react";
+import { useContext, useEffect, useState, memo } from "react";
 import { Link } from "react-router";
 import wstar from "../assets/Starwhite.png";
 import bstar from "../assets/bstar.png";
@@ -93,6 +93,7 @@ export const ItemCard = memo(function ItemCard({
   darkmode,
 }) {
   const animcontrol = useAnimationControls();
+  const [isLarge, setIsLarge] = useState(false);
 
   function handleAddItems(e) {
     e.preventDefault();
@@ -127,13 +128,22 @@ export const ItemCard = memo(function ItemCard({
     setCartItems(ccart);
   }
 
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    setIsLarge(mq.matches);
+
+    const handler = (e) => setIsLarge(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
   return (
     <motion.div
       className="flex min-h-80 flex-col gap-3 rounded-2xl p-5 shadow-xl md:w-60 md:shadow-none dark:text-amber-50 dark:shadow-stone-950/50 dark:hover:shadow-stone-950/50"
       variants={{
         push: {
-          scale: [1.1, 0.8, 1.2],
-          rotate: ["1deg", "3deg", "0deg"],
+          scale: isLarge ? [1.1, 1, 1.2] : [1.1, 0.8, 1],
+          rotate: ["1deg", "2deg", "0deg"],
           transition: { duration: 0.2 },
         },
       }}
