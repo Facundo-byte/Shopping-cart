@@ -45,6 +45,7 @@ export default function ShopItems() {
 
   return (
     <div className={darkmode ? "dark" : ""}>
+      {/*header*/}
       <div ref={headerRef}>
         <Header active={active} />
       </div>
@@ -54,6 +55,7 @@ export default function ShopItems() {
           <p>Cargando...</p>
         </main>
       ) : (
+        {/*main page*/}
         <motion.main
           initial={{ y: -50 }}
           animate={{ y: 0 }}
@@ -98,6 +100,7 @@ export default function ShopItems() {
             Movie catalogue.
           </h1>
 
+          {/*movie catalogue*/}  
           <motion.ul
             initial="hidden"
             animate="visible"
