@@ -55,7 +55,6 @@ export default function ShopItems() {
           <p>Cargando...</p>
         </main>
       ) : (
-        {/*main page*/}
         <motion.main
           initial={{ y: -50 }}
           animate={{ y: 0 }}
@@ -100,7 +99,6 @@ export default function ShopItems() {
             Movie catalogue.
           </h1>
 
-          {/*movie catalogue*/}  
           <motion.ul
             initial="hidden"
             animate="visible"
