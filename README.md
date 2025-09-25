@@ -1,4 +1,4 @@
-# 🛒 Shopping Cart
+# Shopping Cart
 
 A shopping cart project built with **React**, **Vite**, and **Tailwind CSS**.  
 It allows adding and removing products, displaying the cart item count, and toggling between light/dark mode.  
@@ -6,13 +6,9 @@ The project is optimized to work on both **mobile devices and desktop computers*
 
 ---
 
-## Try it here
+## You can try it out here!
 
-[Live Demo](https://shopping-cart-eosin-nine.vercel.app/)
-
----
-
-## Test
+https://shopping-cart-eosin-nine.vercel.app/
 
 [Video Demo](https://youtu.be/QUJ1b-XzYUU)
 
