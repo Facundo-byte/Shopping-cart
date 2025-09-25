@@ -1,12 +1,14 @@
 import { Header, Footer } from "./FooterHeader.jsx";
-import { useContext, useEffect, useState, memo } from "react";
+import { useContext, useEffect, useState, useRef, memo } from "react";
 import { Link } from "react-router";
 import wstar from "../assets/Starwhite.png";
 import bstar from "../assets/bstar.png";
+import cart from "../assets/Cart.png";
+import bcart from "../assets/bcart.png";
 import { MoviesContext } from "../context/MoviesContext.jsx";
 import { DarkmodeContext } from "../context/DarkmodeContext.jsx";
 import { ItemsContext } from "../context/ItemsContext.jsx";
-import { motion, useAnimationControls } from "motion/react";
+import { motion, useAnimationControls, AnimatePresence } from "motion/react";
 
 const posterUrl = "https://image.tmdb.org/t/p/original";
 
@@ -14,7 +16,28 @@ export default function ShopItems() {
   const { movies, error, loading } = useContext(MoviesContext);
   const { items, setItems, cartitems, setCartItems } = useContext(ItemsContext);
   const { darkmode } = useContext(DarkmodeContext);
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const headerRef = useRef(null);
   const active = 1;
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsHeaderVisible(entry.isIntersecting);
+      },
+      { threshold: 0 },
+    );
+
+    if (headerRef.current) {
+      observer.observe(headerRef.current);
+    }
+
+    return () => {
+      if (headerRef.current) {
+        observer.unobserve(headerRef.current);
+      }
+    };
+  }, []);
 
   if (error) {
     return <p>hubo un error</p>;
@@ -22,7 +45,10 @@ export default function ShopItems() {
 
   return (
     <div className={darkmode ? "dark" : ""}>
-      <Header active={active} />
+      <div ref={headerRef}>
+        <Header active={active} />
+      </div>
+
       {loading ? (
         <main>
           <p>Cargando...</p>
@@ -34,6 +60,40 @@ export default function ShopItems() {
           transition={{ duration: 0.8, ease: "easeInOut" }}
           className="transition-delay-100 flex flex-col gap-10 bg-stone-100 pt-6 pr-10 pl-10 transition-colors dark:bg-stone-900"
         >
+          {/*floating cart*/}
+          {!isHeaderVisible && (
+            <AnimatePresence>
+              <motion.div
+                className="fixed right-8 bottom-10 z-50 md:right-20"
+                initial={{
+                  opacity: 0,
+                }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                }}
+                whileHover={{
+                  scale: 1.2,
+                }}
+                transition={{ duration: 0.1 }}
+                exit={{
+                  opacity: 0,
+                }}
+              >
+                <Link
+                  to="/cart"
+                  className="relative flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-stone-100 text-white shadow-xl transition hover:size-15 dark:bg-stone-800"
+                >
+                  <img src={darkmode ? cart : bcart} className="size-7"></img>
+
+                  <span className="absolute -top-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-lime-600 text-xs font-bold">
+                    {cartitems}
+                  </span>
+                </Link>
+              </motion.div>
+            </AnimatePresence>
+          )}
+
           <h1 className="text-4xl font-bold text-lime-600 md:pl-25 md:text-5xl">
             Movie catalogue.
           </h1>

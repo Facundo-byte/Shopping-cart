@@ -42,7 +42,13 @@ export const Header = memo(function Header({ active }) {
             <img src={cinemovie} alt="" />
           </Link>
           <button onClick={(e) => showMenu(e)} className="md:hidden">
-            <img src={darkmode ? menu : bmenu} alt="" />
+            <img
+              src={darkmode ? menu : bmenu}
+              alt=""
+              className={
+                show ? "rotate-90 duration-75" : "rotation-0 duration-75"
+              }
+            />
           </button>
         </div>
 
