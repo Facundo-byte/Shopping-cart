@@ -83,6 +83,7 @@ export default function ShopItems() {
               >
                 <Link
                   to="/cart"
+                  onClick={() => window.scrollTo({ top: 0 })}
                   className="relative flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-stone-100 text-white shadow-xl transition hover:size-15 dark:bg-stone-800"
                 >
                   <img src={darkmode ? cart : bcart} className="size-7"></img>
